@@ -1,5 +1,6 @@
 abstract class AppAssets {
   static const String logoSplash = 'assets/logoSplash.png';
+  static const String logo2 = 'assets/logo2.png';
   static const String logoTransparente = 'assets/logoFundoTransparente.png';
   static const String logoLogin = 'assets/loginLogo.png';
   static const String smile = 'assets/smile.png';
@@ -8,4 +9,11 @@ abstract class AppAssets {
   static const String consultorios = 'assets/consultorios.png';
   static const String perfil = 'assets/perfil.png';
   static const String contato = 'assets/contato.png';
+  static const String ans3 = 'assets/ANS3.png';
+  static const String carteirinhaLogo = 'assets/carteirinhaLogo.png';
+  static const String photoPerfil = 'assets/alice.png';
+  static const String consultorioResult = 'assets/consultoriosLogo.png';
+  static const String info = 'assets/info.png';
+  static const String map = 'assets/map.png';
+  static const String vector = 'assets/vector.png';
 }

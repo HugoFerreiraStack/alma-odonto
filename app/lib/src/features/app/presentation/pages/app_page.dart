@@ -30,7 +30,9 @@ class AppPage extends GetView<AppController> {
             key: controller.bottomNavKey,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(30), topLeft: Radius.circular(30)),
+                topRight: Radius.circular(30),
+                topLeft: Radius.circular(30),
+              ),
               // ignore: prefer_const_literals_to_create_immutables
               boxShadow: [
                 BoxShadow(
@@ -44,24 +46,26 @@ class AppPage extends GetView<AppController> {
               ),
               child: BottomNavigationBar(
                 onTap: (index) {
-                  controller.currentPage = index;
+                  controller.animateToPage(index);
                 },
                 currentIndex: controller.currentPage,
                 // ignore: prefer_const_literals_to_create_immutables
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
-                      icon: Image.asset(
-                        AppAssets.carteirinha,
-                        width: 60,
-                      ),
-                      label: '',
-                      activeIcon: Image.asset(AppAssets.carteirinha,
-                          width: 60, color: AppColors.azul)),
+                    icon: Image.asset(
+                      AppAssets.carteirinha,
+                      width: 60,
+                    ),
+                    label: '',
+                    activeIcon: Image.asset(AppAssets.carteirinha,
+                        width: 60, color: AppColors.azul),
+                  ),
                   BottomNavigationBarItem(
-                      icon: Image.asset(AppAssets.consultorios),
-                      label: '',
-                      activeIcon: Image.asset(AppAssets.consultorios,
-                          color: AppColors.azul)),
+                    icon: Image.asset(AppAssets.consultorios),
+                    label: '',
+                    activeIcon: Image.asset(AppAssets.consultorios,
+                        color: AppColors.azul),
+                  ),
                   BottomNavigationBarItem(
                       icon: Image.asset(AppAssets.perfil),
                       label: '',

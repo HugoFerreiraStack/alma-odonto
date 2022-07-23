@@ -19,6 +19,7 @@ class BotaoGrande extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Container(
+          height: 60,
           padding: const EdgeInsets.symmetric(vertical: 20),
           color: AppColors.amarelo,
           child: Stack(
@@ -28,7 +29,7 @@ class BotaoGrande extends StatelessWidget {
                   text,
                   softWrap: false,
                   style: const TextStyle(
-                      fontSize: 25,
+                      fontSize: 18,
                       fontWeight: FontWeight.w600,
                       color: Colors.white),
                 ),
