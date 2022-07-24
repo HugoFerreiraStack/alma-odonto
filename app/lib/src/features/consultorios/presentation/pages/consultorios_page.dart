@@ -19,7 +19,6 @@ class ConsultoriosPage extends GetView<ConsultoriosController> {
         toolbarHeight: 80,
       ),
       body: SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
         child: Container(
           height: MediaQuery.of(context).size.height,
           color: Colors.blue,

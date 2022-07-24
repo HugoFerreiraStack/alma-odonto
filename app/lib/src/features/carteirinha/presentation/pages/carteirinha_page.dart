@@ -12,7 +12,7 @@ class CarteirinhaPage extends GetView<CarteirinhaController> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        toolbarHeight: 20,
+        toolbarHeight: 25,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -46,7 +46,7 @@ class CarteirinhaPage extends GetView<CarteirinhaController> {
                     Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: Container(
                             color: Colors.white,
                             width: 72,
@@ -55,14 +55,22 @@ class CarteirinhaPage extends GetView<CarteirinhaController> {
                                 fit: BoxFit.cover),
                           ),
                         ),
-                        Container(
-                          color: Colors.white,
-                          width: size.width * 0.6,
-                          height: 20,
-                          child: const Text(
-                            'Alice Santos Pereira',
-                            style: TextStyle(color: Colors.grey),
-                          ),
+                        Column(
+                          children: [
+                            Container(
+                              width: size.width * 0.6,
+                              height: 80,
+                            ),
+                            Container(
+                              color: Colors.white,
+                              width: size.width * 0.67,
+                              height: 20,
+                              child: const Text(
+                                'Alice Santos Pereira',
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
