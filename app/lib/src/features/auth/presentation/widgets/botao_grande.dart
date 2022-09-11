@@ -5,11 +5,13 @@ import '../../../../config/themes/app_colors.dart';
 class BotaoGrande extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
+  final bool? loading;
 
   const BotaoGrande({
     Key? key,
     required this.text,
     required this.onTap,
+    this.loading = false,
   }) : super(key: key);
 
   @override
@@ -25,14 +27,15 @@ class BotaoGrande extends StatelessWidget {
           child: Stack(
             children: [
               Center(
-                child: Text(
-                  text,
-                  softWrap: false,
-                  style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white),
-                ),
+                child: loading == false
+                    ? Text(
+                        text,
+                        softWrap: false,
+                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white),
+                      )
+                    : const CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
               ),
             ],
           ),

@@ -24,48 +24,57 @@ import 'app_routes.dart';
 abstract class AppPages {
   static final pages = [
     GetPage(
-        name: AppRoutes.SPLASH,
-        page: () => const SplashPage(),
-        binding: LoginBinding()),
+      name: AppRoutes.SPLASH,
+      page: () => const SplashPage(),
+      binding: LoginBinding(),
+    ),
     GetPage(
-        name: AppRoutes.LOGIN,
-        page: () => LoginPage(),
-        binding: LoginBinding()),
-    GetPage(
-        name: AppRoutes.CLIENTE_ATIVO,
-        page: () => ClienteAtivoPage(),
-        binding: LoginBinding()),
+      name: AppRoutes.LOGIN,
+      page: () => LoginPage(),
+      binding: LoginBinding(),
+    ),
+    GetPage(name: AppRoutes.CLIENTE_ATIVO, page: () => ClienteAtivoPage(), bindings: [
+      LoginBinding(),
+      AppBinding(),
+    ]),
     GetPage(
       name: AppRoutes.CLIENTE_INATIVO,
       page: () => ClienteInativoPage(),
     ),
     GetPage(
-        name: AppRoutes.APP,
-        page: () => const AppPage(),
-        binding: AppBinding()),
+      name: AppRoutes.APP,
+      page: () => const AppPage(),
+      binding: AppBinding(),
+    ),
     GetPage(
-        name: AppRoutes.CARTEIRINHA,
-        page: () => CarteirinhaPage(),
-        binding: CarteirinhaBinding()),
+      name: AppRoutes.CARTEIRINHA,
+      page: () => CarteirinhaPage(),
+      binding: CarteirinhaBinding(),
+    ),
     GetPage(
-        name: AppRoutes.CONSULTORIOS,
-        page: () => ConsultoriosPage(),
-        binding: ConsultoriosBinding()),
+      name: AppRoutes.CONSULTORIOS,
+      page: () => ConsultoriosPage(),
+      binding: ConsultoriosBinding(),
+    ),
     GetPage(
-        name: AppRoutes.CONSULTORIOS_RESULT,
-        page: () => ConsultoriosResultPage(),
-        binding: ConsultoriosBinding()),
+      name: AppRoutes.CONSULTORIOS_RESULT,
+      page: () => ConsultoriosResultPage(),
+      binding: ConsultoriosBinding(),
+    ),
     GetPage(
-        name: AppRoutes.CONSULTORIOS_DETAILS,
-        page: () => ConsultoriosDetailsPage(),
-        binding: ConsultoriosBinding()),
+      name: AppRoutes.CONSULTORIOS_DETAILS,
+      page: () => ConsultoriosDetailsPage(),
+      binding: ConsultoriosBinding(),
+    ),
     GetPage(
-        name: AppRoutes.PERFIL,
-        page: () => PerfilPage(),
-        binding: PerfilBinding()),
+      name: AppRoutes.PERFIL,
+      page: () => PerfilPage(),
+      binding: PerfilBinding(),
+    ),
     GetPage(
-        name: AppRoutes.CONTATO,
-        page: () => ContatoPage(),
-        binding: ContatoBinding()),
+      name: AppRoutes.CONTATO,
+      page: () => ContatoPage(),
+      binding: ContatoBinding(),
+    ),
   ];
 }

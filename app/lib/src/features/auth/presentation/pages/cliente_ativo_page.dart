@@ -15,17 +15,12 @@ import '../widgets/input_form.dart';
 class ClienteAtivoPage extends StatelessWidget {
   ClienteAtivoPage({Key? key}) : super(key: key);
   final LoginController controller = Get.find();
-  final GlobalKey<FormState> loginFormKey =
-      GlobalKey<FormState>(debugLabel: 'loginFormKey');
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>(debugLabel: 'loginFormKey');
 
   void logar() {
     if (loginFormKey.currentState!.validate()) {
       controller.carregandoLogin = true;
       controller.login();
-      // fake loading
-      Future.delayed(const Duration(seconds: 2), () {
-        controller.carregandoLogin = false;
-      });
     } else {
       log('00');
     }
@@ -116,10 +111,7 @@ class ClienteAtivoPage extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Senha',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18),
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                     ),
 
@@ -130,6 +122,9 @@ class ClienteAtivoPage extends StatelessWidget {
                       obscureText: true,
                       hintText: 'Use a mesma senha do banco central',
                       hintColor: Colors.grey,
+                      onChanged: (value) {
+                        controller.senha = value;
+                      },
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Informe sua senha.";
@@ -150,8 +145,7 @@ class ClienteAtivoPage extends StatelessWidget {
                             height: 14,
                             color: Colors.white,
                             child: Checkbox(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5)),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                                 side: BorderSide(color: Colors.white),
                                 checkColor: Colors.blue,
                                 activeColor: Colors.white,
@@ -166,16 +160,13 @@ class ClienteAtivoPage extends StatelessWidget {
                         ),
                         Text(
                           'Lembrar-se de mim',
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                         Spacer(),
                         TextButton(
                           child: Text(
                             'Esqueceu sua senha?',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
+                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                           ),
                           onPressed: () {},
                         )

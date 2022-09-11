@@ -1,3 +1,4 @@
+import 'package:almaodonto/src/features/app/domain/entities/user_app.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,6 +16,10 @@ class AppController extends GetxController {
   final _isLogged = false.obs;
   get isLogged => _isLogged.value;
   set isLogged(value) => _isLogged.value = value;
+
+  final _loggedUser = UserApp().obs;
+  UserApp get loggedUser => _loggedUser.value;
+  set loggedUser(UserApp value) => _loggedUser.value = value;
 
   void animateToPage(int page) {
     currentPage = page;

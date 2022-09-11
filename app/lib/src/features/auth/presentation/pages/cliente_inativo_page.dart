@@ -1,10 +1,23 @@
+import 'dart:developer';
+
 import 'package:almaodonto/src/config/themes/app_assets.dart';
 import 'package:almaodonto/src/config/themes/app_colors.dart';
+import 'package:almaodonto/src/core/extensions/constants.dart';
 import 'package:almaodonto/src/features/auth/presentation/widgets/botao_grande.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ClienteInativoPage extends StatelessWidget {
   const ClienteInativoPage({Key? key}) : super(key: key);
+
+  Future<void> makePhoneCall(String phoneNumber) async {
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+    await launchUrl(launchUri);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +71,21 @@ class ClienteInativoPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: BotaoGrande(text: '(00) 0000-0000', onTap: () {}),
+              child: BotaoGrande(
+                text: Constants.phoneCentralAtendimento,
+                onTap: () async {
+                  await makePhoneCall(Constants.phoneCentralAtendimento);
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GestureDetector(
+                  onTap: () {
+                    log('Clicou');
+                    Get.back();
+                  },
+                  child: const Text('Voltar')),
             )
           ],
         ),

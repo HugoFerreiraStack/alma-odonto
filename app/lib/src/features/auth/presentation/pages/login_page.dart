@@ -13,20 +13,14 @@ import 'package:get/get.dart';
 import '../controllers/login_controller.dart';
 import '../widgets/botao_grande.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends GetView<LoginController> {
   LoginPage({Key? key}) : super(key: key);
-  final LoginController controller = Get.find();
-  final GlobalKey<FormState> loginFormKey =
-      GlobalKey<FormState>(debugLabel: 'loginFormKey');
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>(debugLabel: 'loginFormKey');
 
   void logar() {
     if (loginFormKey.currentState!.validate()) {
       controller.carregandoLogin = true;
       controller.checkCpf();
-      // fake loading
-      Future.delayed(const Duration(seconds: 2), () {
-        controller.carregandoLogin = false;
-      });
     } else {
       log('00');
     }
@@ -65,6 +59,9 @@ class LoginPage extends StatelessWidget {
                       SizedBox(height: 10),
                     ]),
                     InputForm(
+                      onChanged: (value) {
+                        controller.cpf = value;
+                      },
                       color: AppColors.azul,
                       controller: controller.cpfController,
                       hintText: '000.000.000-00',
@@ -86,10 +83,7 @@ class LoginPage extends StatelessWidget {
                     Row(children: [
                       Text(
                         'Data de Nascimento',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18),
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                       SizedBox(height: 10),
                     ]),
@@ -98,10 +92,7 @@ class LoginPage extends StatelessWidget {
                       controller: controller.dataNascimentoController,
                       hintText: '00/00/0000',
                       hintColor: Colors.grey,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                        DataInputFormatter()
-                      ],
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly, DataInputFormatter()],
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Você deve informar uma data válida.";
@@ -110,12 +101,16 @@ class LoginPage extends StatelessWidget {
                         return null;
                       },
                     ),
+
                     const SizedBox(height: 150),
                     Center(
-                      child: BotaoGrande(
-                        text: 'ENTRAR',
-                        onTap: logar,
-                      ),
+                      child: Obx(() {
+                        return BotaoGrande(
+                          text: 'ENTRAR',
+                          onTap: logar,
+                          loading: controller.carregandoLogin,
+                        );
+                      }),
                     ),
                     const SizedBox(height: 10),
                     Center(

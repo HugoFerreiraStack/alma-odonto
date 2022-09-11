@@ -1,21 +1,20 @@
-class LoginParams {
-  LoginParams({
+class CheckLoginParams {
+  CheckLoginParams({
     required this.document,
-    required this.password,
+    required this.birthday,
   });
-
   late final String document;
-  late final String password;
+  late final String birthday;
 
-  LoginParams.fromJson(Map<String, dynamic> json) {
+  CheckLoginParams.fromJson(Map<String, dynamic> json) {
     document = json['document'];
-    password = json['password'];
+    birthday = json['birthday'];
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['document'] = document;
-    _data['password'] = password;
+    _data['birthday'] = birthday;
     return _data;
   }
 }
