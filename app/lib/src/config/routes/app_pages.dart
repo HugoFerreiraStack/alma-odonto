@@ -31,16 +31,20 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.LOGIN,
       page: () => LoginPage(),
-      binding: LoginBinding(),
+      bindings: [
+        LoginBinding(),
+        AppBinding(),
+      ],
     ),
-    GetPage(name: AppRoutes.CLIENTE_ATIVO, page: () => ClienteAtivoPage(), bindings: [
-      LoginBinding(),
-      AppBinding(),
-    ]),
     GetPage(
-      name: AppRoutes.CLIENTE_INATIVO,
-      page: () => ClienteInativoPage(),
+      name: AppRoutes.CLIENTE_ATIVO,
+      page: () => ClienteAtivoPage(),
+      bindings: [
+        LoginBinding(),
+        AppBinding(),
+      ],
     ),
+    GetPage(name: AppRoutes.CLIENTE_INATIVO, page: () => ClienteInativoPage(), bindings: [AppBinding(), LoginBinding()]),
     GetPage(
       name: AppRoutes.APP,
       page: () => const AppPage(),

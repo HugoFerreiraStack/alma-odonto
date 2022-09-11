@@ -11,9 +11,6 @@ class AppBinding implements Bindings {
   @override
   void dependencies() {
     Get.put<CustomDio>(CustomDio(), permanent: true);
-    final CheckLoginUseCase checkLoginUseCase = CheckLoginUseCase(LoginRepositoryImpl(dio: Get.find<CustomDio>()));
-    final LoginUseCase loginUseCase = LoginUseCase(LoginRepositoryImpl(dio: Get.find<CustomDio>()));
-    Get.put<LoginController>(LoginController(checkLoginUseCase, loginUseCase));
     Get.put<AppController>(AppController());
   }
 }

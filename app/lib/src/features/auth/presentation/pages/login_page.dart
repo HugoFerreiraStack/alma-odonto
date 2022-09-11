@@ -13,8 +13,9 @@ import 'package:get/get.dart';
 import '../controllers/login_controller.dart';
 import '../widgets/botao_grande.dart';
 
-class LoginPage extends GetView<LoginController> {
+class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
+  final LoginController controller = Get.find();
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>(debugLabel: 'loginFormKey');
 
   void logar() {
@@ -59,9 +60,6 @@ class LoginPage extends GetView<LoginController> {
                       SizedBox(height: 10),
                     ]),
                     InputForm(
-                      onChanged: (value) {
-                        controller.cpf = value;
-                      },
                       color: AppColors.azul,
                       controller: controller.cpfController,
                       hintText: '000.000.000-00',

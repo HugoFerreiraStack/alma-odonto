@@ -15,6 +15,8 @@ import '../../../app/presentation/controllers/app_controller.dart';
 import '../../domain/entities/login_params.dart';
 
 class LoginController extends GetxController {
+  static LoginController get to => Get.find();
+
   LoginController(this.checkLoginUseCase, this.loginUseCase);
 
   final AppController appController = Get.find();
@@ -46,10 +48,6 @@ class LoginController extends GetxController {
   get senha => _senha.value;
   set senha(value) => _senha.value = value;
 
-  final _cpf = ''.obs;
-  get cpf => _cpf.value;
-  set cpf(value) => _cpf.value = value;
-
   final _loggedUser = CheckLoginResult().obs;
   CheckLoginResult get loggedUser => _loggedUser.value;
   set loggedUser(CheckLoginResult value) => _loggedUser.value = value;
@@ -73,6 +71,7 @@ class LoginController extends GetxController {
     var outputDate = outputFormat.format(inputDate);
 
     log(dataNascimentoController.text.toString());
+    appController.cpf = cpfController.text;
 
     final CheckLoginParams params = CheckLoginParams(document: cpfController.text, birthday: outputDate);
     log(params.toJson().toString());
@@ -107,7 +106,8 @@ class LoginController extends GetxController {
   }
 
   Future<void> login() async {
-    final LoginParams params = LoginParams(document: cpf, password: senhaController.text);
+    log(appController.cpf);
+    final LoginParams params = LoginParams(document: appController.cpf, password: senhaController.text);
     log(params.toJson().toString());
 
     final signin = await loginUseCase.execute(params);
@@ -131,11 +131,5 @@ class LoginController extends GetxController {
       log('Logou');
       Get.offAndToNamed(AppRoutes.APP);
     });
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-    //checkUser();
   }
 }

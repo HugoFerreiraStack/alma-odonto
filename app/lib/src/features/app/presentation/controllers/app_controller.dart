@@ -21,6 +21,10 @@ class AppController extends GetxController {
   UserApp get loggedUser => _loggedUser.value;
   set loggedUser(UserApp value) => _loggedUser.value = value;
 
+  final _cpf = ''.obs;
+  get cpf => _cpf.value;
+  set cpf(value) => _cpf.value = value;
+
   void animateToPage(int page) {
     currentPage = page;
     pageController.jumpToPage(page);

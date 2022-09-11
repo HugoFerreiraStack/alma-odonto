@@ -42,7 +42,7 @@ class LoginRepositoryImpl extends LoginRepository {
         'password': params.password,
       });
       final response = await dio.post(ApiRoutes.LOGIN, data: formData);
-
+      log(response.data.toString());
       return Right(UserApp.fromJson(response.data));
     } on DioError catch (err) {
       log(err.response.toString());
