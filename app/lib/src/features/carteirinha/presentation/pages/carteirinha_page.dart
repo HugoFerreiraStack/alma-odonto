@@ -222,21 +222,18 @@ class CarteirinhaPage extends GetView<AppController> {
             const SizedBox(height: 10),
             Row(
               children: [
-                SizedBox(
-                  height: 200,
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: controller.loggedUser.data!.dependentes!.length,
-                      itemBuilder: (context, index) {
-                        return Expandable(
-                          firstChild: Text(controller.loggedUser.data!.dependentes![index].name!),
-                          secondChild: Text(controller.loggedUser.data!.dependentes![index].document!),
-                          clickable: Clickable.firstChildOnly,
-                          backgroundColor: Colors.white,
-                          showArrowWidget: true,
-                        );
-                      }),
-                ),
+                ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.loggedUser.data!.dependentes!.length,
+                    itemBuilder: (context, index) {
+                      return Expandable(
+                        firstChild: Text(controller.loggedUser.data!.dependentes![index].name!),
+                        secondChild: Text(controller.loggedUser.data!.dependentes![index].document!),
+                        clickable: Clickable.firstChildOnly,
+                        backgroundColor: Colors.white,
+                        showArrowWidget: true,
+                      );
+                    }),
               ],
             ),
             // Row(
