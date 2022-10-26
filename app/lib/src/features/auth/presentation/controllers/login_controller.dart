@@ -91,14 +91,14 @@ class LoginController extends GetxController {
 
   void redirectUser() async {
     if (loggedUser.data?.active == '0') {
-      carregandoLogin = false;
-      Future.delayed(const Duration(seconds: 3), () {
+      Future.delayed(const Duration(seconds: 1), () {
         carregandoLogin = false;
+
         Get.toNamed(AppRoutes.CLIENTE_INATIVO);
       });
     } else if (loggedUser.data?.active == '1') {
-      carregandoLogin = false;
-      Future.delayed(const Duration(seconds: 3), () {
+      Future.delayed(const Duration(seconds: 1), () {
+        appController.clienteAtivo = loggedUser;
         carregandoLogin = false;
         Get.toNamed(AppRoutes.CLIENTE_ATIVO);
       });
@@ -118,7 +118,7 @@ class LoginController extends GetxController {
       carregandoLogin = false;
     }, (r) {
       if (salvarUsuario == true) {
-        setDioToken(r.data!.token);
+        setDioToken(r.data!.token!);
         box.write('token', r.data!.token);
         final finalToken = box.read('token');
         log(finalToken.toString());
@@ -126,6 +126,8 @@ class LoginController extends GetxController {
         appController.loggedUser = r;
         carregandoLogin = false;
       } else {
+        appController.isLogged = true;
+        appController.loggedUser = r;
         carregandoLogin = false;
       }
       log('Logou');

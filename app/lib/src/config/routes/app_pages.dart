@@ -53,7 +53,7 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.CARTEIRINHA,
       page: () => CarteirinhaPage(),
-      binding: CarteirinhaBinding(),
+      bindings: [AppBinding(), CarteirinhaBinding()],
     ),
     GetPage(
       name: AppRoutes.CONSULTORIOS,

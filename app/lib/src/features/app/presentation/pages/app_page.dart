@@ -24,6 +24,8 @@ class AppPage extends GetView<AppController> {
 
   @override
   Widget build(BuildContext context) {
+    print('APP PAGE');
+    controller.showUserData();
     return Scaffold(
       bottomNavigationBar: Obx(() {
         return Container(
@@ -35,8 +37,7 @@ class AppPage extends GetView<AppController> {
               ),
               // ignore: prefer_const_literals_to_create_immutables
               boxShadow: [
-                BoxShadow(
-                    color: Colors.black38, spreadRadius: 0, blurRadius: 10),
+                BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
               ],
             ),
             child: ClipRRect(
@@ -57,25 +58,17 @@ class AppPage extends GetView<AppController> {
                       width: 60,
                     ),
                     label: '',
-                    activeIcon: Image.asset(AppAssets.carteirinha,
-                        width: 60, color: AppColors.azul),
+                    activeIcon: Image.asset(AppAssets.carteirinha, width: 60, color: AppColors.azul),
                   ),
                   BottomNavigationBarItem(
                     icon: Image.asset(AppAssets.consultorios),
                     label: '',
-                    activeIcon: Image.asset(AppAssets.consultorios,
-                        color: AppColors.azul),
+                    activeIcon: Image.asset(AppAssets.consultorios, color: AppColors.azul),
                   ),
                   BottomNavigationBarItem(
-                      icon: Image.asset(AppAssets.perfil),
-                      label: '',
-                      activeIcon:
-                          Image.asset(AppAssets.perfil, color: AppColors.azul)),
+                      icon: Image.asset(AppAssets.perfil), label: '', activeIcon: Image.asset(AppAssets.perfil, color: AppColors.azul)),
                   BottomNavigationBarItem(
-                      icon: Image.asset(AppAssets.contato),
-                      label: '',
-                      activeIcon:
-                          Image.asset(AppAssets.contato, color: AppColors.azul))
+                      icon: Image.asset(AppAssets.contato), label: '', activeIcon: Image.asset(AppAssets.contato, color: AppColors.azul))
                 ],
               ),
             ));

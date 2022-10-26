@@ -26,6 +26,10 @@ class LoginRepositoryImpl extends LoginRepository {
         'birthday': params.birthday,
       });
       final response = await dio.post(ApiRoutes.CHECK_LOGIN, data: formData);
+      if (response.data['status'] == 'error') {
+        return Left(ServerFailure(message: 'Erro ao conectar ao banco de dados'));
+      }
+      log(response.data.toString());
 
       return Right(CheckLoginResult.fromJson(response.data));
     } on DioError catch (err) {
@@ -42,7 +46,7 @@ class LoginRepositoryImpl extends LoginRepository {
         'password': params.password,
       });
       final response = await dio.post(ApiRoutes.LOGIN, data: formData);
-      log(response.data.toString());
+      print(response.data.toString());
       return Right(UserApp.fromJson(response.data));
     } on DioError catch (err) {
       log(err.response.toString());

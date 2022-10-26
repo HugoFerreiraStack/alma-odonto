@@ -1,6 +1,12 @@
+import 'dart:developer';
+
 import 'package:almaodonto/src/features/app/domain/entities/user_app.dart';
+import 'package:expandable_widgets/expandable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+
+import '../../../auth/domain/entities/check_login_result.dart';
 
 class AppController extends GetxController {
   static AppController get to => Get.find();
@@ -21,6 +27,10 @@ class AppController extends GetxController {
   UserApp get loggedUser => _loggedUser.value;
   set loggedUser(UserApp value) => _loggedUser.value = value;
 
+  final _clienteAtivo = CheckLoginResult().obs;
+  CheckLoginResult get clienteAtivo => _clienteAtivo.value;
+  set clienteAtivo(CheckLoginResult value) => _clienteAtivo.value = value;
+
   final _cpf = ''.obs;
   get cpf => _cpf.value;
   set cpf(value) => _cpf.value = value;
@@ -30,8 +40,8 @@ class AppController extends GetxController {
     pageController.jumpToPage(page);
   }
 
-  @override
-  void onInit() {
-    super.onInit();
+  showUserData() {
+    print('DADOS DO USUARIO');
+    log(loggedUser.toJson().toString());
   }
 }

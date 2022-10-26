@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:almaodonto/src/config/themes/app_assets.dart';
-import 'package:almaodonto/src/features/carteirinha/presentation/controllers/carteirinha_controller.dart';
+import 'package:almaodonto/src/features/app/presentation/controllers/app_controller.dart';
+import 'package:expandable_widgets/expandable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CarteirinhaPage extends GetView<CarteirinhaController> {
+class CarteirinhaPage extends GetView<AppController> {
   const CarteirinhaPage({Key? key}) : super(key: key);
 
   @override
@@ -22,10 +25,7 @@ class CarteirinhaPage extends GetView<CarteirinhaController> {
               width: size.width,
               height: 80,
               decoration: const BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30))),
+                  color: Colors.blue, borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30))),
               child: Center(
                 child: Image.asset(AppAssets.carteirinhaLogo),
               ),
@@ -51,8 +51,7 @@ class CarteirinhaPage extends GetView<CarteirinhaController> {
                             color: Colors.white,
                             width: 72,
                             height: 100,
-                            child: Image.asset(AppAssets.photoPerfil,
-                                fit: BoxFit.cover),
+                            child: Image.asset(AppAssets.photoPerfil, fit: BoxFit.cover),
                           ),
                         ),
                         Column(
@@ -65,10 +64,12 @@ class CarteirinhaPage extends GetView<CarteirinhaController> {
                               color: Colors.white,
                               width: size.width * 0.67,
                               height: 20,
-                              child: const Text(
-                                'Alice Santos Pereira',
-                                style: TextStyle(color: Colors.grey),
-                              ),
+                              child: Obx(() {
+                                return Text(
+                                  controller.loggedUser.data!.name!,
+                                  style: TextStyle(color: Colors.grey),
+                                );
+                              }),
                             ),
                           ],
                         ),
@@ -80,10 +81,12 @@ class CarteirinhaPage extends GetView<CarteirinhaController> {
                           color: Colors.white,
                           width: 350,
                           height: 20,
-                          child: const Text(
-                            '0000 0000 0000 0000 00',
-                            style: TextStyle(color: Colors.grey),
-                          ),
+                          child: Obx(() {
+                            return Text(
+                              controller.loggedUser.data!.document!,
+                              style: TextStyle(color: Colors.grey),
+                            );
+                          }),
                         ),
                         Row(
                           children: [
@@ -93,8 +96,8 @@ class CarteirinhaPage extends GetView<CarteirinhaController> {
                                 color: Colors.white,
                                 width: 200,
                                 height: 20,
-                                child: const Text(
-                                  'Empresa',
+                                child: Text(
+                                  controller.loggedUser.data!.company!,
                                   style: TextStyle(color: Colors.grey),
                                 ),
                               ),
@@ -105,10 +108,12 @@ class CarteirinhaPage extends GetView<CarteirinhaController> {
                                 color: Colors.white,
                                 width: 128,
                                 height: 20,
-                                child: const Text(
-                                  '00/00/0000',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
+                                child: Obx(() {
+                                  return Text(
+                                    controller.loggedUser.data!.birthday!,
+                                    style: TextStyle(color: Colors.grey),
+                                  );
+                                }),
                               ),
                             ),
                           ],
@@ -134,8 +139,8 @@ class CarteirinhaPage extends GetView<CarteirinhaController> {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Container(
-                child: const Text(
-                  '0000 0000 0000 0000 00',
+                child: Text(
+                  controller.loggedUser.data!.wallet!,
                   style: TextStyle(color: Colors.black, fontSize: 18),
                 ),
               ),
@@ -144,10 +149,7 @@ class CarteirinhaPage extends GetView<CarteirinhaController> {
             const Center(
               child: Text(
                 'Dados do Usuário',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(height: 10),
@@ -161,10 +163,10 @@ class CarteirinhaPage extends GetView<CarteirinhaController> {
               ),
             ),
             const SizedBox(height: 10),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(left: 20),
               child: Text(
-                'Alice Santos Pereira',
+                controller.loggedUser.data!.name!,
                 style: TextStyle(
                   color: Colors.black,
                 ),
@@ -181,10 +183,10 @@ class CarteirinhaPage extends GetView<CarteirinhaController> {
               ),
             ),
             const SizedBox(height: 10),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(left: 20),
               child: Text(
-                '00/00/0000',
+                controller.loggedUser.data!.walletDate.toString(),
                 style: TextStyle(
                   color: Colors.black,
                 ),
@@ -201,10 +203,10 @@ class CarteirinhaPage extends GetView<CarteirinhaController> {
               ),
             ),
             const SizedBox(height: 10),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(left: 20),
               child: Text(
-                'Empresa que trabalha',
+                controller.loggedUser.data!.company!,
                 style: TextStyle(
                   color: Colors.black,
                 ),
@@ -214,50 +216,62 @@ class CarteirinhaPage extends GetView<CarteirinhaController> {
             const Center(
               child: Text(
                 'Dependentes',
-                style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(color: Colors.blue, fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(height: 10),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 20),
-                  child: Text(
-                    'José Santos Pereira',
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      style: ButtonStyle(
-                          foregroundColor:
-                              MaterialStateProperty.all<Color>(Colors.black)),
-                      child: const Icon(
-                        Icons.remove,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      style: ButtonStyle(
-                          foregroundColor:
-                              MaterialStateProperty.all<Color>(Colors.black)),
-                      child: const Icon(
-                        Icons.add_outlined,
-                      ),
-                    ),
-                  ],
+                SizedBox(
+                  height: 200,
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: controller.loggedUser.data!.dependentes!.length,
+                      itemBuilder: (context, index) {
+                        return Expandable(
+                          firstChild: Text(controller.loggedUser.data!.dependentes![index].name!),
+                          secondChild: Text(controller.loggedUser.data!.dependentes![index].document!),
+                          clickable: Clickable.firstChildOnly,
+                          backgroundColor: Colors.white,
+                          showArrowWidget: true,
+                        );
+                      }),
                 ),
               ],
             ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     const Padding(
+            //       padding: EdgeInsets.only(left: 20),
+            //       child: Text(
+            //         'José Santos Pereira',
+            //         style: TextStyle(
+            //           color: Colors.black,
+            //         ),
+            //       ),
+            //     ),
+            //     Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //       children: [
+            //         TextButton(
+            //           onPressed: () {},
+            //           style: ButtonStyle(foregroundColor: MaterialStateProperty.all<Color>(Colors.black)),
+            //           child: const Icon(
+            //             Icons.remove,
+            //           ),
+            //         ),
+            //         TextButton(
+            //           onPressed: () {},
+            //           style: ButtonStyle(foregroundColor: MaterialStateProperty.all<Color>(Colors.black)),
+            //           child: const Icon(
+            //             Icons.add_outlined,
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),

@@ -4,11 +4,11 @@ class UserApp {
     this.data,
   });
   late final String? status;
-  late final Data? data;
+  late final Usuario? data;
 
   UserApp.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    data = Data.fromJson(json['data']);
+    data = Usuario.fromJson(json['data']);
   }
 
   Map<String, dynamic> toJson() {
@@ -19,55 +19,39 @@ class UserApp {
   }
 }
 
-class Data {
-  Data({
-    required this.document,
-    required this.birthday,
-    required this.name,
-    required this.company,
-    required this.wallet,
-    required this.walletDate,
-    required this.mail,
-    required this.active,
-    required this.dp1Name,
-    required this.dp1Document,
-    required this.dp1Birthday,
-    required this.dp2Name,
-    required this.dp2Document,
-    required this.dp2Birthday,
-    required this.dp3Name,
-    required this.dp3Document,
-    required this.dp3Birthday,
-    required this.lastIp,
-    required this.lastLogin,
-    required this.creatAt,
-    required this.updateAt,
-    required this.token,
+class Usuario {
+  Usuario({
+    this.document,
+    this.birthday,
+    this.name,
+    this.company,
+    this.wallet,
+    this.walletDate,
+    this.mail,
+    this.active,
+    this.lastIp,
+    this.lastLogin,
+    this.creatAt,
+    this.updateAt,
+    this.token,
+    this.dependentes,
   });
-  late final String document;
-  late final String birthday;
-  late final String name;
-  late final String company;
-  late final String wallet;
-  late final String walletDate;
-  late final String mail;
-  late final String active;
-  late final String dp1Name;
-  late final String dp1Document;
-  late final String dp1Birthday;
-  late final String dp2Name;
-  late final String dp2Document;
-  late final String dp2Birthday;
-  late final String dp3Name;
-  late final String dp3Document;
-  late final String dp3Birthday;
-  late final String lastIp;
-  late final String lastLogin;
-  late final String creatAt;
-  late final String updateAt;
-  late final String token;
+  late final String? document;
+  late final String? birthday;
+  late final String? name;
+  late final String? company;
+  late final String? wallet;
+  late final String? walletDate;
+  late final String? mail;
+  late final bool? active;
+  late final String? lastIp;
+  late final String? lastLogin;
+  late final String? creatAt;
+  late final String? updateAt;
+  late final String? token;
+  late final List<Dependentes>? dependentes;
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Usuario.fromJson(Map<String, dynamic> json) {
     document = json['document'];
     birthday = json['birthday'];
     name = json['name'];
@@ -76,20 +60,12 @@ class Data {
     walletDate = json['wallet_date'];
     mail = json['mail'];
     active = json['active'];
-    dp1Name = json['dp1_name'];
-    dp1Document = json['dp1_document'];
-    dp1Birthday = json['dp1_birthday'];
-    dp2Name = json['dp2_name'];
-    dp2Document = json['dp2_document'];
-    dp2Birthday = json['dp2_birthday'];
-    dp3Name = json['dp3_name'];
-    dp3Document = json['dp3_document'];
-    dp3Birthday = json['dp3_birthday'];
     lastIp = json['last_ip'];
     lastLogin = json['last_login'];
     creatAt = json['creat_at'];
     updateAt = json['update_at'];
     token = json['token'];
+    dependentes = json['dependents'] != null ? List.from(json['dependents']).map((e) => Dependentes.fromJson(e)).toList() : [];
   }
 
   Map<String, dynamic> toJson() {
@@ -102,20 +78,45 @@ class Data {
     _data['wallet_date'] = walletDate;
     _data['mail'] = mail;
     _data['active'] = active;
-    _data['dp1_name'] = dp1Name;
-    _data['dp1_document'] = dp1Document;
-    _data['dp1_birthday'] = dp1Birthday;
-    _data['dp2_name'] = dp2Name;
-    _data['dp2_document'] = dp2Document;
-    _data['dp2_birthday'] = dp2Birthday;
-    _data['dp3_name'] = dp3Name;
-    _data['dp3_document'] = dp3Document;
-    _data['dp3_birthday'] = dp3Birthday;
     _data['last_ip'] = lastIp;
     _data['last_login'] = lastLogin;
     _data['creat_at'] = creatAt;
     _data['update_at'] = updateAt;
     _data['token'] = token;
+    _data['dependents'] = dependentes?.map((e) => e.toJson()).toList();
+    return _data;
+  }
+}
+
+class Dependentes {
+  Dependentes({
+    this.id,
+    this.documentHolder,
+    this.document,
+    this.name,
+    this.birthday,
+  });
+  late final String? id;
+  late final String? documentHolder;
+  late final String? document;
+  late final String? name;
+  late final String? birthday;
+
+  Dependentes.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    documentHolder = json['document_holder'];
+    document = json['document'];
+    name = json['name'];
+    birthday = json['birthday'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['document_holder'] = documentHolder;
+    _data['document'] = document;
+    _data['name'] = name;
+    _data['birthday'] = birthday;
     return _data;
   }
 }

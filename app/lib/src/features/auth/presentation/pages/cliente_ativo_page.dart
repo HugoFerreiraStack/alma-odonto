@@ -2,6 +2,7 @@
 
 import 'dart:developer';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -56,33 +57,41 @@ class ClienteAtivoPage extends StatelessWidget {
                   bottom: 15,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
+                    child: SizedBox(
                       width: 200,
                       child: Column(
                         children: [
-                          RichText(
-                            text: TextSpan(
-                              text: 'Olá ',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              children: const [
-                                TextSpan(
-                                  text: 'Alice, ',
-                                  style: TextStyle(
-                                    color: Colors.blue,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          Text(
+                            'Olá',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Obx(() {
+                                    return AutoSizeText(
+                                      controller.appController.clienteAtivo.data!.name,
+                                      maxLines: 1,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    );
+                                  }),
                                 ),
                               ],
                             ),
                           ),
                           RichText(
                             text: TextSpan(
-                              text: 'Bem-Vinda',
+                              text: 'Bem-Vindo(a)',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 20,
