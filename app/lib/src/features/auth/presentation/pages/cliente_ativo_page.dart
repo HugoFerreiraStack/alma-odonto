@@ -16,7 +16,8 @@ import '../widgets/input_form.dart';
 class ClienteAtivoPage extends StatelessWidget {
   ClienteAtivoPage({Key? key}) : super(key: key);
   final LoginController controller = Get.find();
-  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>(debugLabel: 'loginFormKey');
+  final GlobalKey<FormState> loginFormKey =
+      GlobalKey<FormState>(debugLabel: 'loginFormKey');
 
   void logar() {
     if (loginFormKey.currentState!.validate()) {
@@ -49,7 +50,7 @@ class ClienteAtivoPage extends StatelessWidget {
                       // border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   child: Image.asset(
-                    AppAssets.headerPerfil,
+                    AppAssets.photoPerfil,
                     height: 100,
                   ),
                 ),
@@ -76,7 +77,8 @@ class ClienteAtivoPage extends StatelessWidget {
                                 Expanded(
                                   child: Obx(() {
                                     return AutoSizeText(
-                                      controller.appController.clienteAtivo.data!.name,
+                                      controller.appController.clienteAtivo
+                                          .data!.name,
                                       maxLines: 1,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
@@ -120,7 +122,10 @@ class ClienteAtivoPage extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Senha',
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
                       ),
                     ),
 
@@ -154,7 +159,8 @@ class ClienteAtivoPage extends StatelessWidget {
                             height: 14,
                             color: Colors.white,
                             child: Checkbox(
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5)),
                                 side: BorderSide(color: Colors.white),
                                 checkColor: Colors.blue,
                                 activeColor: Colors.white,
@@ -169,13 +175,16 @@ class ClienteAtivoPage extends StatelessWidget {
                         ),
                         Text(
                           'Lembrar-se de mim',
-                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                         Spacer(),
                         TextButton(
                           child: Text(
                             'Esqueceu sua senha?',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
                           ),
                           onPressed: () {},
                         )

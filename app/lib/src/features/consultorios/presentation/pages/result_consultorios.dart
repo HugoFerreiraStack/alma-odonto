@@ -29,13 +29,14 @@ class ConsultoriosResultPage extends GetView<ConsultoriosController> {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: TextField(
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       hintText: "Pesquisar",
-                      suffixIcon: Icon(
-                        Icons.search,
+                      suffixIcon: IconButton(
+                        icon: const Icon(Icons.search),
                         color: Colors.amber,
+                        onPressed: () {},
                       ),
-                      border: OutlineInputBorder(
+                      border: const OutlineInputBorder(
                           borderRadius:
                               BorderRadius.all(Radius.circular(25.0)))),
                   onChanged: (text) {},

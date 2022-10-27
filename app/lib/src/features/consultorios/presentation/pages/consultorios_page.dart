@@ -14,141 +14,141 @@ class ConsultoriosPage extends GetView<ConsultoriosController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        toolbarHeight: 80,
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          color: Colors.blue,
-          child: Column(
-            children: [
-              const Center(
-                child: Text(
-                  'Consultórios',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 20, top: 10, right: 20),
-                child: Center(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            color: Colors.blue,
+            child: Column(
+              children: [
+                const Center(
                   child: Text(
-                    'Encontre os consultórios mais próximos de você',
+                    'Consultórios',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 50),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Container(
-                  alignment: Alignment.topLeft,
-                  child: const Text(
-                    'Estado',
-                    style: TextStyle(
+                const Padding(
+                  padding: EdgeInsets.only(left: 20, top: 10, right: 20),
+                  child: Center(
+                    child: Text(
+                      'Encontre os consultórios mais próximos de você',
+                      style: TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
+                        fontSize: 16,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: InputForm(
-                  color: AppColors.azul,
-                  //controller: controller.dataNascimentoController,
-                  hintText: 'São Paulo',
-                  hintColor: Colors.grey,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.digitsOnly,
-                    DataInputFormatter()
+                const SizedBox(height: 50),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Container(
+                    alignment: Alignment.topLeft,
+                    child: const Text(
+                      'Estado',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: InputForm(
+                    color: AppColors.azul,
+                    //controller: controller.dataNascimentoController,
+                    hintText: 'São Paulo',
+                    hintColor: Colors.grey,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      DataInputFormatter()
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Container(
+                    alignment: Alignment.topLeft,
+                    child: const Text(
+                      'Cidade',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: InputForm(
+                    color: AppColors.azul,
+                    //controller: controller.dataNascimentoController,
+                    hintText: 'Campinas',
+                    hintColor: Colors.grey,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      DataInputFormatter()
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Container(
+                    alignment: Alignment.topLeft,
+                    child: const Text(
+                      'Especialidade',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                  ),
+                ),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: InputForm(
+                        color: AppColors.azul,
+                        //controller: controller.dataNascimentoController,
+                        hintText: 'Odontologia',
+                        hintColor: Colors.grey,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          DataInputFormatter()
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.add),
+                        ),
+                      ),
+                    )
                   ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Container(
-                  alignment: Alignment.topLeft,
-                  child: const Text(
-                    'Cidade',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
+                const SizedBox(height: 30),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: BotaoGrande(
+                    text: 'Encontrar',
+                    onTap: () {
+                      Get.toNamed(AppRoutes.CONSULTORIOS_RESULT);
+                    },
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: InputForm(
-                  color: AppColors.azul,
-                  //controller: controller.dataNascimentoController,
-                  hintText: 'Campinas',
-                  hintColor: Colors.grey,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.digitsOnly,
-                    DataInputFormatter()
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Container(
-                  alignment: Alignment.topLeft,
-                  child: const Text(
-                    'Especialidade',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                  ),
-                ),
-              ),
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: InputForm(
-                      color: AppColors.azul,
-                      //controller: controller.dataNascimentoController,
-                      hintText: 'Odentologia',
-                      hintColor: Colors.grey,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                        DataInputFormatter()
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 12),
-                    child: Container(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.add)),
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 30),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: BotaoGrande(
-                  text: 'Encontrar',
-                  onTap: () {
-                    Get.toNamed(AppRoutes.CONSULTORIOS_RESULT);
-                  },
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
