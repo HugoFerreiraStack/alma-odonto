@@ -1,15 +1,27 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:almaodonto/src/config/themes/app_assets.dart';
+import 'package:almaodonto/src/features/app/presentation/controllers/app_controller.dart';
 import 'package:almaodonto/src/features/auth/presentation/widgets/botao_grande.dart';
 import 'package:almaodonto/src/features/perfil/presentations/controllers/perfil_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
-class PerfilPage extends GetView<PerfilController> {
+class PerfilPage extends GetView<AppController> {
   const PerfilPage({Key? key}) : super(key: key);
+  buildData() {
+    DateTime dt = DateTime.parse(controller.loggedUser.data!.birthday!);
+
+    String formattedDate = DateFormat('dd/MM/yyyy').format(dt);
+
+    return formattedDate;
+  }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+
     return Scaffold(
         body: SafeArea(
       child: SingleChildScrollView(
@@ -47,8 +59,9 @@ class PerfilPage extends GetView<PerfilController> {
             ),
             const SizedBox(height: 50),
             RichText(
-              text: const TextSpan(
-                text: 'Bem-vinda, ',
+              text: TextSpan(
+                text: 'Bem-vindo (a), ',
+                // ignore: prefer_const_constructors
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
@@ -56,7 +69,7 @@ class PerfilPage extends GetView<PerfilController> {
                 ),
                 children: [
                   TextSpan(
-                    text: 'Alice',
+                    text: controller.loggedUser.data!.name,
                     style: TextStyle(
                       color: Colors.blue,
                       fontSize: 18,
@@ -79,7 +92,7 @@ class PerfilPage extends GetView<PerfilController> {
               alignment: Alignment.centerLeft,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Padding(
                     padding: EdgeInsets.only(left: 20),
                     child: Text(
@@ -93,7 +106,7 @@ class PerfilPage extends GetView<PerfilController> {
                   Padding(
                     padding: EdgeInsets.only(left: 20),
                     child: Text(
-                      'Alice Santos Pereira',
+                      controller.loggedUser.data!.name!,
                       style: TextStyle(
                         color: Colors.grey,
                       ),
@@ -113,7 +126,7 @@ class PerfilPage extends GetView<PerfilController> {
                   Padding(
                     padding: EdgeInsets.only(left: 20),
                     child: Text(
-                      '00/00/0000',
+                      buildData(),
                       style: TextStyle(
                         color: Colors.grey,
                       ),
@@ -123,24 +136,24 @@ class PerfilPage extends GetView<PerfilController> {
               ),
             ),
             const SizedBox(height: 80),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: BotaoGrande(
-                text: 'CARTEIRINHA',
-                onTap: (() {}),
-              ),
-            ),
-            Center(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'ALTERAR SENHA',
-                  style: TextStyle(
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
-            )
+            // Padding(
+            //   padding: const EdgeInsets.all(10.0),
+            //   child: BotaoGrande(
+            //     text: 'CARTEIRINHA',
+            //     onTap: (() {}),
+            //   ),
+            // ),
+            // Center(
+            //   child: TextButton(
+            //     onPressed: () {},
+            //     child: const Text(
+            //       'ALTERAR SENHA',
+            //       style: TextStyle(
+            //         color: Colors.grey,
+            //       ),
+            //     ),
+            //   ),
+            // )
           ],
         ),
       ),

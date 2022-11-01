@@ -5,9 +5,18 @@ import 'package:almaodonto/src/features/app/presentation/controllers/app_control
 import 'package:expandable_widgets/expandable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class CarteirinhaPage extends GetView<AppController> {
   const CarteirinhaPage({Key? key}) : super(key: key);
+
+  buildData(String data) {
+    DateTime dt = DateTime.parse(data);
+
+    String formattedDate = DateFormat('dd/MM/yyyy').format(dt);
+
+    return formattedDate;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +31,7 @@ class CarteirinhaPage extends GetView<AppController> {
                 width: size.width,
                 height: 80,
                 decoration: const BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30))),
+                    color: Colors.blue, borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30))),
                 child: Center(
                   child: Image.asset(AppAssets.carteirinhaLogo),
                 ),
@@ -74,8 +80,7 @@ class CarteirinhaPage extends GetView<AppController> {
                                       padding: const EdgeInsets.only(left: 10),
                                       child: Text(
                                         controller.loggedUser.data!.name!,
-                                        style:
-                                            const TextStyle(color: Colors.grey),
+                                        style: const TextStyle(color: Colors.grey),
                                       ),
                                     );
                                   }),
@@ -116,8 +121,7 @@ class CarteirinhaPage extends GetView<AppController> {
                                     padding: const EdgeInsets.only(left: 10),
                                     child: Text(
                                       controller.loggedUser.data!.company!,
-                                      style:
-                                          const TextStyle(color: Colors.grey),
+                                      style: const TextStyle(color: Colors.grey),
                                     ),
                                   ),
                                 ),
@@ -132,9 +136,8 @@ class CarteirinhaPage extends GetView<AppController> {
                                     return Padding(
                                       padding: const EdgeInsets.only(left: 10),
                                       child: Text(
-                                        controller.loggedUser.data!.birthday!,
-                                        style:
-                                            const TextStyle(color: Colors.grey),
+                                        buildData(controller.loggedUser.data!.birthday!),
+                                        style: const TextStyle(color: Colors.grey),
                                       ),
                                     );
                                   }),
@@ -172,10 +175,7 @@ class CarteirinhaPage extends GetView<AppController> {
               const Center(
                 child: Text(
                   'Dados do Usuário',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(height: 10),
@@ -212,7 +212,7 @@ class CarteirinhaPage extends GetView<AppController> {
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Text(
-                  controller.loggedUser.data!.walletDate.toString(),
+                  buildData(controller.loggedUser.data!.walletDate.toString()),
                   style: const TextStyle(
                     color: Colors.black,
                   ),
@@ -242,10 +242,7 @@ class CarteirinhaPage extends GetView<AppController> {
               const Center(
                 child: Text(
                   'Dependentes',
-                  style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(color: Colors.blue, fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(height: 10),
@@ -257,12 +254,10 @@ class CarteirinhaPage extends GetView<AppController> {
                   return Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: Expandable(
-                      firstChild: Text(controller
-                          .loggedUser.data!.dependentes![index].name!),
+                      firstChild: Text(controller.loggedUser.data!.dependentes![index].name!),
                       secondChild: Padding(
                         padding: const EdgeInsets.only(bottom: 20, top: 20),
-                        child: Text(controller
-                            .loggedUser.data!.dependentes![index].document!),
+                        child: Text(controller.loggedUser.data!.dependentes![index].document!),
                       ),
                       clickable: Clickable.firstChildOnly,
                       backgroundColor: Colors.white,

@@ -24,8 +24,7 @@ class AppPage extends GetView<AppController> {
 
   @override
   Widget build(BuildContext context) {
-    print('APP PAGE');
-    controller.showUserData();
+    controller.getEstados();
     return Scaffold(
       bottomNavigationBar: Obx(() {
         return Container(

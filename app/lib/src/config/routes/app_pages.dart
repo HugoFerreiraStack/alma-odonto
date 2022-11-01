@@ -58,7 +58,7 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.CONSULTORIOS,
       page: () => ConsultoriosPage(),
-      binding: ConsultoriosBinding(),
+      binding: AppBinding(),
     ),
     GetPage(
       name: AppRoutes.CONSULTORIOS_RESULT,
@@ -68,12 +68,12 @@ abstract class AppPages {
     GetPage(
       name: AppRoutes.CONSULTORIOS_DETAILS,
       page: () => ConsultoriosDetailsPage(),
-      binding: ConsultoriosBinding(),
+      binding: AppBinding(),
     ),
     GetPage(
       name: AppRoutes.PERFIL,
       page: () => PerfilPage(),
-      binding: PerfilBinding(),
+      binding: AppBinding(),
     ),
     GetPage(
       name: AppRoutes.CONTATO,

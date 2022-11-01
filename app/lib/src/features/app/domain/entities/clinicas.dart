@@ -1,10 +1,10 @@
 class Clinicas {
   Clinicas({
-    required this.status,
-    required this.data,
+    this.status,
+    this.data,
   });
-  late final String status;
-  late final List<Clinica> data;
+  late final String? status;
+  late final List<Clinica>? data;
 
   Clinicas.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -14,50 +14,50 @@ class Clinicas {
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['status'] = status;
-    _data['data'] = data.map((e) => e.toJson()).toList();
+    _data['data'] = data?.map((e) => e.toJson()).toList();
     return _data;
   }
 }
 
 class Clinica {
   Clinica({
-    required this.id,
-    required this.name,
-    required this.phone,
-    required this.whatsapp,
-    required this.email_1,
-    required this.email_2,
-    required this.site,
-    required this.cep,
-    required this.state,
-    required this.city,
-    required this.district,
-    required this.address,
-    required this.complement,
-    required this.number,
-    required this.specialty,
-    required this.customText,
-    required this.creatAt,
-    required this.updatedAt,
+    this.id,
+    this.name,
+    this.phone,
+    this.whatsapp,
+    this.email_1,
+    this.email_2,
+    this.site,
+    this.cep,
+    this.state,
+    this.city,
+    this.district,
+    this.address,
+    this.complement,
+    this.number,
+    this.specialty,
+    this.customText,
+    this.creatAt,
+    this.updatedAt,
   });
-  late final String id;
-  late final String name;
-  late final String phone;
-  late final String whatsapp;
-  late final String email_1;
-  late final String email_2;
-  late final String site;
-  late final String cep;
-  late final String state;
-  late final String city;
-  late final String district;
-  late final String address;
-  late final String complement;
-  late final String number;
-  late final String specialty;
-  late final String customText;
-  late final String creatAt;
-  late final String updatedAt;
+  late final String? id;
+  late final String? name;
+  late final String? phone;
+  late final String? whatsapp;
+  late final String? email_1;
+  late final String? email_2;
+  late final String? site;
+  late final String? cep;
+  late final String? state;
+  late final String? city;
+  late final String? district;
+  late final String? address;
+  late final String? complement;
+  late final String? number;
+  late final String? specialty;
+  late final String? customText;
+  late final String? creatAt;
+  late final String? updatedAt;
 
   Clinica.fromJson(Map<String, dynamic> json) {
     id = json['id'];

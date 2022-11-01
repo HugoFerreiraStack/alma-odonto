@@ -1,10 +1,10 @@
 class Especialidades {
   Especialidades({
-    required this.status,
-    required this.data,
+    this.status,
+    this.data,
   });
-  late final String status;
-  late final List<Especialidade> data;
+  late final String? status;
+  late final List<Especialidade>? data;
 
   Especialidades.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -14,7 +14,7 @@ class Especialidades {
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['status'] = status;
-    _data['data'] = data.map((e) => e.toJson()).toList();
+    _data['data'] = data?.map((e) => e.toJson()).toList();
     return _data;
   }
 }

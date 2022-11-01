@@ -1,10 +1,11 @@
 import 'package:almaodonto/src/config/themes/app_assets.dart';
+import 'package:almaodonto/src/features/app/presentation/controllers/app_controller.dart';
 import 'package:almaodonto/src/features/auth/presentation/widgets/botao_grande.dart';
 import 'package:almaodonto/src/features/consultorios/presentation/controllers/consultorios_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ConsultoriosDetailsPage extends GetView<ConsultoriosController> {
+class ConsultoriosDetailsPage extends GetView<AppController> {
   const ConsultoriosDetailsPage({Key? key}) : super(key: key);
 
   @override
@@ -38,12 +39,9 @@ class ConsultoriosDetailsPage extends GetView<ConsultoriosController> {
               padding: const EdgeInsets.only(top: 40, left: 20),
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                child: const Text(
-                  'Clínica Médica São Gabriel',
-                  style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+                child: Text(
+                  controller.clinica.name!,
+                  style: TextStyle(color: Colors.blue, fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -52,8 +50,8 @@ class ConsultoriosDetailsPage extends GetView<ConsultoriosController> {
               child: Container(
                 alignment: Alignment.topLeft,
                 margin: const EdgeInsets.only(top: 10),
-                child: const Text(
-                  'Avenida Brasil, 1500',
+                child: Text(
+                  controller.clinica.address!,
                   style: TextStyle(color: Colors.grey),
                 ),
               ),
@@ -62,8 +60,8 @@ class ConsultoriosDetailsPage extends GetView<ConsultoriosController> {
               padding: const EdgeInsets.only(left: 20),
               child: Container(
                 alignment: Alignment.topLeft,
-                child: const Text(
-                  'Jardins - São Paulo',
+                child: Text(
+                  '${controller.clinica.district!} - ${controller.clinica.state!}',
                   style: TextStyle(
                     color: Colors.grey,
                   ),
@@ -74,8 +72,8 @@ class ConsultoriosDetailsPage extends GetView<ConsultoriosController> {
               padding: const EdgeInsets.only(left: 20),
               child: Container(
                 alignment: Alignment.topLeft,
-                child: const Text(
-                  '(11) 0000-0000',
+                child: Text(
+                  controller.clinica.phone!,
                   style: TextStyle(color: Colors.grey),
                 ),
               ),
@@ -95,8 +93,7 @@ class ConsultoriosDetailsPage extends GetView<ConsultoriosController> {
               child: Container(
                 alignment: Alignment.topLeft,
                 width: MediaQuery.of(context).size.width,
-                child: const Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'),
+                child: Text(controller.clinica.customText!),
               ),
             ),
             const SizedBox(height: 10),
@@ -107,7 +104,7 @@ class ConsultoriosDetailsPage extends GetView<ConsultoriosController> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
               child: BotaoGrande(text: 'COMO CHEGAR', onTap: () {}),
             ),
           ],

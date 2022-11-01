@@ -6,4 +6,5 @@ class ApiRoutes {
   static const ESTADOS = '/clinics/show/state/';
   static const ESPECIALIDADES = '/clinics/show/specialty/';
   static const CLINICAS = '/v1/clinics/show/';
+  static const CIDADE_ESTADO = '/clinics/show/city/';
 }

@@ -1,18 +1,24 @@
 import 'package:almaodonto/src/config/routes/app_routes.dart';
 import 'package:almaodonto/src/config/themes/app_colors.dart';
+import 'package:almaodonto/src/features/app/domain/entities/cidade_estado_entity.dart';
+import 'package:almaodonto/src/features/app/presentation/controllers/app_controller.dart';
 import 'package:almaodonto/src/features/auth/presentation/widgets/botao_grande.dart';
 import 'package:almaodonto/src/features/auth/presentation/widgets/input_form.dart';
-import 'package:almaodonto/src/features/consultorios/presentation/controllers/consultorios_controller.dart';
 import 'package:brasil_fields/brasil_fields.dart';
+import 'package:dropdown_plus/dropdown_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class ConsultoriosPage extends GetView<ConsultoriosController> {
+import '../../../app/domain/entities/estados_entity.dart';
+
+class ConsultoriosPage extends GetView<AppController> {
   const ConsultoriosPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    controller.getEstados();
+    controller.getEspecialidades();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -50,24 +56,28 @@ class ConsultoriosPage extends GetView<ConsultoriosController> {
                     alignment: Alignment.topLeft,
                     child: const Text(
                       'Estado',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: InputForm(
-                    color: AppColors.azul,
-                    //controller: controller.dataNascimentoController,
-                    hintText: 'São Paulo',
-                    hintColor: Colors.grey,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      DataInputFormatter()
-                    ],
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(15))),
+                    child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: controller.obx((_) => TextDropdownFormField(
+                              options: controller.listEstados,
+                              decoration: const InputDecoration(suffixIcon: Icon(Icons.arrow_drop_down), hintText: 'Selecione'),
+                              dropdownHeight: 120,
+                              onChanged: (dynamic str) {
+                                controller.estadoSelecionado = str;
+                                controller.listCidades.clear();
+                                print(controller.estadoSelecionado);
+                                controller.getCidades();
+                              },
+                            ))),
                   ),
                 ),
                 Padding(
@@ -76,24 +86,37 @@ class ConsultoriosPage extends GetView<ConsultoriosController> {
                     alignment: Alignment.topLeft,
                     child: const Text(
                       'Cidade',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: InputForm(
-                    color: AppColors.azul,
-                    //controller: controller.dataNascimentoController,
-                    hintText: 'Campinas',
-                    hintColor: Colors.grey,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      DataInputFormatter()
-                    ],
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(15))),
+                    child: controller.estadoSelecionado != null
+                        ? Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: controller.obx((_) => TextDropdownFormField(
+                                  options: controller.listCidades,
+                                  decoration: const InputDecoration(suffixIcon: Icon(Icons.arrow_drop_down), hintText: 'Selecione'),
+                                  dropdownHeight: 120,
+                                  onChanged: (dynamic str) {
+                                    controller.cidadeSelecionada = str;
+                                    print(controller.cidadeSelecionada);
+                                  },
+                                )))
+                        : Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Container(
+                              alignment: Alignment.topLeft,
+                              child: const Text(
+                                'Cidade',
+                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+                              ),
+                            ),
+                          ),
                   ),
                 ),
                 Padding(
@@ -102,40 +125,28 @@ class ConsultoriosPage extends GetView<ConsultoriosController> {
                     alignment: Alignment.topLeft,
                     child: const Text(
                       'Especialidade',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                   ),
                 ),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: InputForm(
-                        color: AppColors.azul,
-                        //controller: controller.dataNascimentoController,
-                        hintText: 'Odontologia',
-                        hintColor: Colors.grey,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          DataInputFormatter()
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Container(
-                        alignment: Alignment.centerRight,
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.add),
-                        ),
-                      ),
-                    )
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(15))),
+                    child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: controller.obx((_) => TextDropdownFormField(
+                              options: controller.listEspecialidades,
+                              decoration: const InputDecoration(suffixIcon: Icon(Icons.arrow_drop_down), hintText: 'Selecione'),
+                              dropdownHeight: 120,
+                              onChanged: (dynamic str) {
+                                controller.especialidadeSelecionada = str;
+
+                                print(controller.especialidadeSelecionada);
+                              },
+                            ))),
+                  ),
                 ),
                 const SizedBox(height: 30),
                 Padding(
@@ -143,7 +154,7 @@ class ConsultoriosPage extends GetView<ConsultoriosController> {
                   child: BotaoGrande(
                     text: 'Encontrar',
                     onTap: () {
-                      Get.toNamed(AppRoutes.CONSULTORIOS_RESULT);
+                      controller.getClinicas();
                     },
                   ),
                 ),
